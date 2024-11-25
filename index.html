@@ -3,300 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Information</title>
+    <title>Comprehensive System Information</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 20px;
-            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Subtle rainbow gradient */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
         }
         .container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
-            max-width: 1200px;
+            gap: 20px;
+            max-width: 1800px;
             margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 2s ease-in; /* Apply fade-in animation */
+            background-color: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         .info-section {
-            width: 45%;
-            margin-bottom: 20px;
+            flex: 1;
+            min-width: 300px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         h1, h2 {
-            color: #3498db;
+            color: #4a4a4a;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
         }
-        p {
+        .info-item {
             margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
         }
-        input[type="text"] {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 8px;
-            font-size: 14px;
+        .info-label {
+            font-weight: bold;
+            color: #667eea;
         }
-        button {
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #2980b9;
-        }
-        .hidden-link {
-            display: none;
-        }
-
-        /* Fade-in animation */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 2s ease-in;
+        .info-value {
+            color: #333;
+            max-width: 60%;
+            word-break: break-all;
         }
     </style>
 </head>
 <body>
-    <div class="container fade-in">
-        <!-- IP Information -->
-        <div class="info-section" id="ipInfo">
-            <h1>IP Address Information</h1>
-            <div id="publicIPv4">
-                <h2>Public IPv4 Address</h2>
-                <p><strong>Address:</strong> <span id="publicIPv4Address"></span></p>
-            </div>
-            <div id="privateIPv4">
-                <h2>Private IPv4 Address</h2>
-                <p><strong>Address:</strong> <span id="privateIPv4Address"></span></p>
-            </div>
-            <div id="ipv6">
-                <h2>IPv6 Address</h2>
-                <p><strong>Address:</strong> <span id="ipv6Address"></span></p>
-            </div>
-            <div id="loopbackIPv4">
-                <h2>Loopback IPv4 Address</h2>
-                <p><strong>Address:</strong> <span id="loopbackIPv4Address"></span></p>
-            </div>
-        </div>
-
-        <!-- Location Information -->
-        <div class="info-section" id="locationInfo">
-            <h1>Location Information</h1>
-            <div id="city">
-                <h2>City</h2>
-                <p><strong>City:</strong> <span id="cityName"></span></p>
-            </div>
-            <div id="state">
-                <h2>State</h2>
-                <p><strong>State:</strong> <span id="stateName"></span></p>
-            </div>
-            <div id="country">
-                <h2>Country</h2>
-                <p><strong>Country:</strong> <span id="countryName"></span></p>
-            </div>
-            <div id="latitude">
-                <h2>Latitude</h2>
-                <p><strong>Latitude:</strong> <span id="latitudeValue"></span></p>
-            </div>
-            <div id="longitude">
-                <h2>Longitude</h2>
-                <p><strong>Longitude:</strong> <span id="longitudeValue"></span></p>
-            </div>
-        </div>
-
-        <!-- Device Information -->
-        <div class="info-section" id="deviceInfo">
+    <div class="container" id="infoContainer">
+        <div class="info-section" id="deviceSection">
             <h1>Device Information</h1>
-            <div id="browser">
-                <h2>Browser</h2>
-                <p><strong>Browser:</strong> <span id="browserName"></span></p>
-            </div>
-            <div id="browserVersion">
-                <h2>Browser Version</h2>
-                <p><strong>Version:</strong> <span id="browserVersionValue"></span></p>
-            </div>
-            <div id="os">
-                <h2>Operating System</h2>
-                <p><strong>OS:</strong> <span id="osName"></span></p>
-            </div>
-            <div id="connectionType">
-                <h2>Connection Type</h2>
-                <p><strong>Type:</strong> <span id="connectionTypeValue"></span></p>
-            </div>
-            <div id="downlink">
-                <h2>Downlink</h2>
-                <p><strong>Downlink:</strong> <span id="downlinkValue"></span></p>
-            </div>
-            <div id="rtt">
-                <h2>RTT</h2>
-                <p><strong>RTT:</strong> <span id="rttValue"></span></p>
-            </div>
-            <div id="userAgent">
-                <h2>User Agent</h2>
-                <p><strong>Agent:</strong> <span id="userAgentString"></span></p>
-            </div>
-            <div id="currentDateTime">
-                <h2>Current Date and Time</h2>
-                <p><strong>Date and Time:</strong> <span id="currentDateTimeValue"></span></p>
-            </div>
-            <div id="timezone">
-                <h2>Timezone</h2>
-                <p><strong>Timezone:</strong> <span id="timezoneValue"></span></p>
-            </div>
-            <div id="screenResolution">
-                <h2>Screen Resolution</h2>
-                <p><strong>Resolution:</strong> <span id="screenResolutionValue"></span></p>
-            </div>
-            <div id="deviceMemory">
-                <h2>Device Memory</h2>
-                <p><strong>Memory:</strong> <span id="deviceMemoryValue"></span></p>
-            </div>
-            <div id="language">
-                <h2>Language</h2>
-                <p><strong>Language:</strong> <span id="languageValue"></span></p>
-            </div>
-            <div id="cpuCores">
-                <h2>CPU Cores</h2>
-                <p><strong>Cores:</strong> <span id="cpuCoresValue"></span></p>
-            </div>
-            <div id="batteryLevel">
-                <h2>Battery Level</h2>
-                <p><strong>Battery Level:</strong> <span id="batteryLevelValue"></span></p>
-            </div>
-            <div id="batteryCharging">
-                <h2>Battery Charging</h2>
-                <p><strong>Charging:</strong> <span id="batteryChargingValue"></span></p>
-            </div>
-            <div id="touchSupport">
-                <h2>Touch Support</h2>
-                <p><strong>Touch:</strong> <span id="touchSupportValue"></span></p>
-            </div>
-            <div id="hardwareConcurrency">
-                <h2>Hardware Concurrency</h2>
-                <p><strong>Concurrency:</strong> <span id="hardwareConcurrencyValue"></span></p>
-            </div>
-            <div id="fonts">
-                <h2>System Fonts</h2>
-                <p><strong>Fonts:</strong> <span id="fontsValue"></span></p>
-            </div>
+            <div id="deviceDetails"></div>
+        </div>
+        <div class="info-section" id="networkSection">
+            <h1>Network Information</h1>
+            <div id="networkDetails"></div>
+        </div>
+        <div class="info-section" id="locationSection">
+            <h1>Location Information</h1>
+            <div id="locationDetails"></div>
+        </div>
+        <div class="info-section" id="browserSection">
+            <h1>Browser Information</h1>
+            <div id="browserDetails"></div>
+        </div>
+        <div class="info-section" id="systemSection">
+            <h1>System Capabilities</h1>
+            <div id="systemDetails"></div>
         </div>
     </div>
 
     <script>
-        // Function to update the current date and time
-        function updateDateTime() {
+        // Utility function to create and append information items
+        function addInfoItem(parentId, label, value, fallbackValue = 'Unavailable') {
+            const parent = document.getElementById(parentId);
+            const displayValue = value || fallbackValue;
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'info-item';
+            itemDiv.innerHTML = `
+                <span class="info-label">${label}:</span>
+                <span class="info-value">${displayValue}</span>
+            `;
+            parent.appendChild(itemDiv);
+        }
+
+        // Fallback IP and Geolocation function
+        async function getIPAndLocationInfo() {
+            const locationSection = 'locationDetails';
+            const networkSection = 'networkDetails';
+
+            // Multiple IP lookup services
+            const ipServices = [
+                'https://api.ipify.org?format=json',
+                'https://ip.seeip.org/jsonip',
+                'https://httpbin.org/ip'
+            ];
+
+            // Multiple Geolocation services
+            const geoServices = [
+                'https://ipapi.co/json/',
+                'https://ip-api.com/json/'
+            ];
+
+            // Try IP services
+            for (let service of ipServices) {
+                try {
+                    const response = await fetch(service);
+                    const data = await response.json();
+                    const ip = data.ip || data.origin;
+                    if (ip) {
+                        addInfoItem(networkSection, 'Public IP', ip);
+                        break;
+                    }
+                } catch {}
+            }
+
+            // Try Geolocation services
+            for (let service of geoServices) {
+                try {
+                    const response = await fetch(service);
+                    const data = await response.json();
+                    
+                    // Handle different service response formats
+                    addInfoItem(locationSection, 'City', 
+                        data.city || data.location?.city || 'Not Found');
+                    addInfoItem(locationSection, 'Region', 
+                        data.region || data.location?.region || data.regionName || 'Not Found');
+                    addInfoItem(locationSection, 'Country', 
+                        data.country_name || data.location?.country || data.country || 'Not Found');
+                    addInfoItem(locationSection, 'Latitude', 
+                        data.latitude || data.location?.lat || 'Not Found');
+                    addInfoItem(locationSection, 'Longitude', 
+                        data.longitude || data.location?.lon || 'Not Found');
+                    addInfoItem(locationSection, 'Timezone', 
+                        data.timezone || data.location?.timezone || 'Not Found');
+                    addInfoItem(locationSection, 'Postal Code', 
+                        data.postal || data.location?.postalCode || 'Not Found');
+                    
+                    break;
+                } catch {}
+            }
+        }
+
+        // Comprehensive information gathering function
+        function gatherComprehensiveInfo() {
+            // Device Details
+            const deviceSection = 'deviceDetails';
+            addInfoItem(deviceSection, 'Platform', 
+                navigator.platform, 
+                'Platform Detection Failed');
+            addInfoItem(deviceSection, 'CPU Cores', 
+                navigator.hardwareConcurrency, 
+                'CPU Core Count Unavailable');
+            addInfoItem(deviceSection, 'Device Memory', 
+                navigator.deviceMemory ? `${navigator.deviceMemory} GB` : null, 
+                'Memory Detection Unavailable');
+            addInfoItem(deviceSection, 'Screen Resolution', 
+                `${window.screen.width} x ${window.screen.height}`, 
+                'Screen Resolution Unknown');
+            addInfoItem(deviceSection, 'Color Depth', 
+                `${window.screen.colorDepth} bits`, 
+                'Color Depth Unknown');
+            addInfoItem(deviceSection, 'Pixel Ratio', 
+                window.devicePixelRatio, 
+                'Pixel Ratio Unavailable');
+            addInfoItem(deviceSection, 'Max Touch Points', 
+                navigator.maxTouchPoints, 
+                'Touch Point Detection Failed');
+
+            // Browser Details
+            const browserSection = 'browserDetails';
+            addInfoItem(browserSection, 'Browser Name', 
+                navigator.appName || navigator.vendor, 
+                'Browser Detection Failed');
+            addInfoItem(browserSection, 'User Agent', 
+                navigator.userAgent, 
+                'User Agent Unavailable');
+            addInfoItem(browserSection, 'Language', 
+                navigator.language, 
+                'Language Detection Failed');
+            addInfoItem(browserSection, 'Supported Languages', 
+                navigator.languages.join(', '), 
+                'Language List Unavailable');
+            addInfoItem(browserSection, 'Cookies Enabled', 
+                navigator.cookieEnabled ? 'Yes' : 'No', 
+                'Cookie Setting Unknown');
+            addInfoItem(browserSection, 'Do Not Track', 
+                navigator.doNotTrack || 'Not Specified', 
+                'Tracking Preference Unavailable');
+
+            // System Capabilities
+            const systemSection = 'systemDetails';
+            if (navigator.connection) {
+                addInfoItem(systemSection, 'Connection Type', 
+                    navigator.connection.type, 
+                    'Connection Type Unknown');
+                addInfoItem(systemSection, 'Downlink Speed', 
+                    navigator.connection.downlink 
+                        ? `${navigator.connection.downlink} Mbps` 
+                        : null, 
+                    'Downlink Speed Unavailable');
+                addInfoItem(systemSection, 'Effective Connection', 
+                    navigator.connection.effectiveType, 
+                    'Connection Effectiveness Unknown');
+            }
+
+            // Battery Information with Detailed Fallbacks
+            if (navigator.getBattery) {
+                navigator.getBattery().then(battery => {
+                    addInfoItem(systemSection, 'Battery Level', 
+                        `${Math.round(battery.level * 100)}%`, 
+                        'Battery Level Unavailable');
+                    addInfoItem(systemSection, 'Charging Status', 
+                        battery.charging ? 'Charging' : 'Not Charging', 
+                        'Charging Status Unknown');
+                    addInfoItem(systemSection, 'Battery Time Remaining', 
+                        battery.dischargingTime !== Infinity 
+                            ? `${Math.round(battery.dischargingTime / 60)} minutes` 
+                            : null, 
+                        'Remaining Time Unavailable');
+                }).catch(() => {
+                    addInfoItem(systemSection, 'Battery', 'Detection Failed');
+                });
+            }
+
+            // Performance and Time
             const now = new Date();
-            const options = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric', 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit',
-                timeZoneName: 'short'
-            };
-            const dateTimeString = now.toLocaleString('en-US', options);
-            document.getElementById('currentDateTimeValue').innerText = dateTimeString;
+            addInfoItem(systemSection, 'Current Time', 
+                now.toLocaleString(), 
+                'Time Detection Failed');
+            addInfoItem(systemSection, 'Timezone Offset', 
+                `GMT${now.getTimezoneOffset() > 0 ? '-' : '+'}${Math.abs(now.getTimezoneOffset() / 60)}`, 
+                'Timezone Offset Unavailable');
         }
 
-        // Call updateDateTime function every second
-        setInterval(updateDateTime, 1000);
-
-        // Initial call to display date and time immediately when the page loads
-        updateDateTime();
-
-        // Fetch IP addresses
-        function displayPublicIPv4() {
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('publicIPv4Address').innerText = data.ip || 'N/A';
-                })
-                .catch(error => {
-                    console.error('Error fetching public IPv4 address:', error);
-                    document.getElementById('publicIPv4Address').innerText = 'Error fetching IPv4 address';
-                });
+        // Run information gathering
+        async function initializeInformation() {
+            gatherComprehensiveInfo();
+            await getIPAndLocationInfo();
         }
 
-        function displayPrivateIPv4() {
-            // This is a placeholder. You would need server-side code to get the private IP address.
-            document.getElementById('privateIPv4Address').innerText = 'N/A';
-        }
-
-        function displayIPv6() {
-            // Placeholder as IPv6 is usually not directly accessible from client-side JavaScript
-            document.getElementById('ipv6Address').innerText = 'N/A';
-        }
-
-        function displayLoopbackIPv4() {
-            document.getElementById('loopbackIPv4Address').innerText = '127.0.0.1';
-        }
-
-        // Fetch Location Data
-        function displayLocation() {
-            fetch('https://ipapi.co/json/')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('cityName').innerText = data.city || 'N/A';
-                    document.getElementById('stateName').innerText = data.region || 'N/A';
-                    document.getElementById('countryName').innerText = data.country_name || 'N/A';
-                    document.getElementById('latitudeValue').innerText = data.latitude || 'N/A';
-                    document.getElementById('longitudeValue').innerText = data.longitude || 'N/A';
-                })
-                .catch(error => {
-                    console.error('Error fetching location data:', error);
-                    document.getElementById('cityName').innerText = 'Error fetching city';
-                    document.getElementById('stateName').innerText = 'Error fetching state';
-                    document.getElementById('countryName').innerText = 'Error fetching country';
-                    document.getElementById('latitudeValue').innerText = 'Error fetching latitude';
-                    document.getElementById('longitudeValue').innerText = 'Error fetching longitude';
-                });
-        }
-
-        // Fetch Device Data
-        function displayDeviceInfo() {
-            document.getElementById('browserName').innerText = navigator.userAgent;
-            document.getElementById('browserVersionValue').innerText = navigator.appVersion;
-            document.getElementById('osName').innerText = navigator.platform;
-            document.getElementById('connectionTypeValue').innerText = navigator.connection ? navigator.connection.effectiveType : 'N/A';
-            document.getElementById('downlinkValue').innerText = navigator.connection ? navigator.connection.downlink : 'N/A';
-            document.getElementById('rttValue').innerText = navigator.connection ? navigator.connection.rtt : 'N/A';
-            document.getElementById('userAgentString').innerText = navigator.userAgent;
-            document.getElementById('timezoneValue').innerText = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            document.getElementById('screenResolutionValue').innerText = `${window.screen.width} x ${window.screen.height}`;
-            document.getElementById('deviceMemoryValue').innerText = navigator.deviceMemory || 'N/A';
-            document.getElementById('languageValue').innerText = navigator.language || 'N/A';
-            document.getElementById('cpuCoresValue').innerText = navigator.hardwareConcurrency || 'N/A';
-            document.getElementById('batteryLevelValue').innerText = 'N/A'; // Requires Battery Status API
-            document.getElementById('batteryChargingValue').innerText = 'N/A'; // Requires Battery Status API
-            document.getElementById('touchSupportValue').innerText = 'N/A'; // Requires specific touch detection
-            document.getElementById('hardwareConcurrencyValue').innerText = navigator.hardwareConcurrency || 'N/A';
-            document.getElementById('fontsValue').innerText = 'N/A'; // Requires font detection library
-        }
-
-        // Call functions to populate data
-        displayPublicIPv4();
-        displayPrivateIPv4();
-        displayIPv6();
-        displayLoopbackIPv4();
-        displayLocation();
-        displayDeviceInfo();
+        // Initialize on page load
+        initializeInformation();
     </script>
 </body>
 </html>
